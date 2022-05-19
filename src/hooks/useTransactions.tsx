@@ -25,7 +25,7 @@ interface TransactionsContextData {
 //   type: string;
 //   category: string;
 // }
-
+//
 // type TransactionInput = Pick<Transaction, 'title' | 'amount' | 'type' | 'category'>;
 
 type TransactionInput = Omit<Transaction, 'id' | 'createdAt'>;
