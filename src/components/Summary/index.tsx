@@ -1,4 +1,4 @@
-import { Container } from "./styles";
+import { Card, Container } from "./styles";
 import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
 import totalImg from '../../assets/total.svg';
@@ -21,10 +21,10 @@ export function Summary() {
     withdraws: 0,
     total: 0,
   })
-
+  
   return (
     <Container>
-      <div>
+      <Card>
         <header>
           <p>Entradas</p>
           <img src={incomeImg} alt="Entradas" />
@@ -35,10 +35,10 @@ export function Summary() {
           style: 'currency',
           currency: 'BRL'
         }).format( Number(summary.deposits))}
-          </strong>
-      </div>
+        </strong>
+      </Card>
 
-      <div>
+      <Card>
         <header>
           <p>Saídas</p>
           <img src={outcomeImg} alt="Saídas" />
@@ -51,9 +51,9 @@ export function Summary() {
           currency: 'BRL'
         }).format( Number(summary.withdraws))}
         </strong>
-      </div>
+      </Card>
 
-      <div className="highlight-background">
+      <Card className="highlight-background" total={summary.total}>
         <header>
           <p>Total</p>
           <img src={totalImg} alt="Total" />
@@ -65,7 +65,7 @@ export function Summary() {
           currency: 'BRL'
         }).format( Number(summary.total))}
         </strong>
-      </div>
+      </Card>
     </Container>
   );
 }

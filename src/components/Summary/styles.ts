@@ -1,12 +1,17 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+interface TotalProps {
+  total?: number;
+}
 
 export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-top: -10rem;
+`;
 
-  div {
+export const Card = styled.div<TotalProps>`
     background: var(--shape);
     padding: 1.5rem 2rem;
     border-radius: 0.25rem;
@@ -27,8 +32,18 @@ export const Container = styled.div`
     }
 
     &.highlight-background {
-      background: var(--green);
       color: #FFF;
+      
+      ${props => (props.total !== undefined && props.total > 0) && css`
+      background: var(--green) 
+      `}
+
+      ${props => (props.total !== undefined && props.total < 0) && css`
+      background: #c53030;
+      `}
+
+      ${props => (props.total !== undefined && props.total === 0) && css`
+      background: #b9b9b5;
+      `}
     }
-  }
 `;
