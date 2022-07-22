@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-import { useTransactions } from "../../hooks/useTransactions";
+import { useTime } from "../../hooks/useTime";
 import { Container } from "./styles";
 
-export function TransactionsTable() {
-  const { transactions } = useTransactions();
+export function TimesTable() {
+  const { time } = useTime();
 
   return (
     <Container>
-      <table>
+      {/* <table>
         <thead>
           <tr>
             <th>Título</th>
@@ -40,7 +40,7 @@ export function TransactionsTable() {
               </tr>
           ))}
         </tbody>
-      </table>
+      </table> */}
     </Container>
   );
 }

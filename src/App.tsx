@@ -3,34 +3,34 @@ import { Header } from "./components/Header";
 import Modal from 'react-modal';
 import { GlobalStyle } from "./styles/global";
 import { useState } from "react";
-import { NewTransactionModal } from "./components/NewTransactionModal";
-import { TransactionsProvider } from "./hooks/useTransactions";
+import { NewTimeModal } from "./components/NewTimeModal";
+import { TimeProvider } from "./hooks/useTime";
 
 Modal.setAppElement('#root');
 
 export function App() {
-  const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false);
+  const [isNewTimeModalOpen, setIsNewTimeModalOpen] = useState(false);
 
-  function handleOpenNewTransactionModal() {
-    setIsNewTransactionModalOpen(true);
+  function handleOpenNewTimeModal() {
+    setIsNewTimeModalOpen(true);
   }
 
-  function handleCloseNewTransactionModal() {
-    setIsNewTransactionModalOpen(false);
+  function handleCloseNewTimeModal() {
+    setIsNewTimeModalOpen(false);
   }
 
   return (
-    <TransactionsProvider>
-      <Header onOpenNewTransactionModal={handleOpenNewTransactionModal}/>
+    <TimeProvider>
+      <Header onOpenNewTimeModal={handleOpenNewTimeModal}/>
 
       <Dashboard />
 
-      <NewTransactionModal 
-        isOpen={isNewTransactionModalOpen}
-        onRequestClose={handleCloseNewTransactionModal}
+      <NewTimeModal 
+        isOpen={isNewTimeModalOpen}
+        onRequestClose={handleCloseNewTimeModal}
       />
 
       <GlobalStyle />
-    </TransactionsProvider>
+    </TimeProvider>
   );
 }

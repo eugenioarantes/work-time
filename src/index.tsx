@@ -5,12 +5,12 @@ import { createServer, Model } from 'miragejs';
 
 createServer({
   models: {
-    transaction: Model,
+    time: Model,
   },
 
   seeds(server) {
     server.db.loadData({
-      transactions: [
+      times: [
         {
           id: 1,
           title: 'Freelancer de website',
@@ -34,14 +34,14 @@ createServer({
   routes(){
     this.namespace = 'api';
 
-    this.get('/transactions', () => {
-      return this.schema.all('transaction');
+    this.get('/time', () => {
+      return this.schema.all('time');
     })
 
-    this.post('transactions', (schema, request)=> {
+    this.post('time', (schema, request)=> {
       const data = JSON.parse(request.requestBody)
 
-      return schema.create('transaction', data);
+      return schema.create('time', data);
     })
   }
 })

@@ -1,69 +1,103 @@
 import { Card, Container } from "./styles";
 import incomeImg from '../../assets/income.svg';
-import outcomeImg from '../../assets/outcome.svg';
-import totalImg from '../../assets/total.svg';
-import { useTransactions } from "../../hooks/useTransactions";
+import { useTime } from "../../hooks/useTime";
+
+import { addHours, addMinutes, differenceInMinutes, subHours, subMinutes } from 'date-fns';
+
+interface QuantityHoursAndMinutes {
+  quantityHours: number;
+  quantityMinutes: number;
+}
+
+interface SubtractLunchTime {
+  hoursSubtractedLunchTime: number;
+  minutesSubtractedLunchTime: number;
+}
+
+const SIXTY_MINUTES = 60;
+const ONE_HOUR = 1;
 
 export function Summary() {
-  const { transactions } = useTransactions();
+  const { time } = useTime();
 
-  const summary = transactions.reduce((acc, transaction) => {
-    if (transaction.type === 'deposit') {
-      acc.deposits += transaction.amount;
-      acc.total += transaction.amount;
-    } else {
-      acc.withdraws += transaction.amount;
-      acc.total -= transaction.amount;
+  let finalHour = 0;
+  let finalMinutes = 0;
+
+  const getHoursAndMinutes = ( chegada: string, saida: string  ): QuantityHoursAndMinutes => {
+    const [arrivalTime, arrivalMinute] = chegada.split(":");
+    const [departureTime, departureMinute] = saida.split(":");
+
+   const timeDifferenceInMinutes = differenceInMinutes(
+      new Date(2022, 8, 20, Number(departureTime), Number(departureMinute), 0),
+      new Date(2022, 8, 20, Number(arrivalTime), Number(arrivalMinute), 0),
+    );
+
+    const quantityHours = Math.floor(timeDifferenceInMinutes / 60);
+
+    const quantityMinutes = timeDifferenceInMinutes - (quantityHours * 60);
+
+    return {
+      quantityHours,
+      quantityMinutes,
     }
-    return acc;
-  }, {
-    deposits: 0,
-    withdraws: 0,
-    total: 0,
-  })
+  };
+
+  const subtractLunchTime = ( lunchTime: number ,quantityHours: number, quantityMinutes: number ): SubtractLunchTime => {
+    let subtractedLunchTime = new Date();
+
+    if (lunchTime === SIXTY_MINUTES) {
+      subtractedLunchTime = subHours(new Date(2022, 8, 20, Number(quantityHours), Number(quantityMinutes)), ONE_HOUR);
+    }
+
+    else if (lunchTime < SIXTY_MINUTES) {
+      subtractedLunchTime = subMinutes(new Date(2022, 8, 20, Number(quantityHours), Number(quantityMinutes)), lunchTime);
+    }
+
+    const hoursSubtractedLunchTime = Number(subtractedLunchTime.getHours());
+    const minutesSubtractedLunchTime = Number(subtractedLunchTime.getMinutes());
+
+    return {
+      hoursSubtractedLunchTime,
+      minutesSubtractedLunchTime,
+    }
+  };
+
+  const addExtraHour = ( hoursSubtractedLunchTime: number, minutesSubtractedLunchTime: number ): void => {
+    let extraHours = 0;  
+
+    extraHours = addHours(new Date(2022, 8, 20, Number(hoursSubtractedLunchTime), Number(minutesSubtractedLunchTime)), time?.extraHours).getHours();
   
+    const extraMinutes = addMinutes(new Date(2022, 8, 20, Number(extraHours), Number(minutesSubtractedLunchTime)), time?.extraMinutes).getMinutes();
+
+    if ( extraMinutes < minutesSubtractedLunchTime) {
+      extraHours = addHours(new Date(2022, 8, 20, Number(extraHours), Number(extraMinutes)), 1).getHours();
+    }
+
+    finalHour = extraHours;
+    finalMinutes = extraMinutes;
+
+  };
+
+
+  if (time?.arrival && time.departure && time.lunch) {
+    const {quantityHours, quantityMinutes} = getHoursAndMinutes(time.arrival, time.departure);
+
+    const {hoursSubtractedLunchTime, minutesSubtractedLunchTime} = subtractLunchTime( time.lunch ,quantityHours, quantityMinutes );
+
+    addExtraHour(hoursSubtractedLunchTime, minutesSubtractedLunchTime);
+  }
+
+
   return (
     <Container>
       <Card>
         <header>
-          <p>Entradas</p>
-          <img src={incomeImg} alt="Entradas" />
+          <p>Result: </p>
+          <img src={incomeImg} alt="Entries" />
         </header>
 
         <strong>
-        {new Intl.NumberFormat('pt-BR', {
-          style: 'currency',
-          currency: 'BRL'
-        }).format( Number(summary.deposits))}
-        </strong>
-      </Card>
-
-      <Card>
-        <header>
-          <p>Saídas</p>
-          <img src={outcomeImg} alt="Saídas" />
-        </header>
-
-        <strong>
-          -
-        {new Intl.NumberFormat('pt-BR', {
-          style: 'currency',
-          currency: 'BRL'
-        }).format( Number(summary.withdraws))}
-        </strong>
-      </Card>
-
-      <Card className="highlight-background" total={summary.total}>
-        <header>
-          <p>Total</p>
-          <img src={totalImg} alt="Total" />
-        </header>
-
-        <strong>
-        {new Intl.NumberFormat('pt-BR', {
-          style: 'currency',
-          currency: 'BRL'
-        }).format( Number(summary.total))}
+          {finalHour}: {finalMinutes}
         </strong>
       </Card>
     </Container>
