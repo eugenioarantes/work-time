@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import Modal from 'react-modal';
 
-import { Container } from './styles';
+import { Container, Input, Label, Title } from './styles';
 import closeImg from '../../assets/close.svg';
 import { useTime } from '../../hooks/useTime';
 
@@ -57,33 +57,43 @@ export function NewTimeModal({isOpen, onRequestClose}: NewTimeModalProps) {
     </button>
 
     <Container onSubmit={handleCreateNewTime}>
-     <h2>Cadastrar dia</h2>
+     <Title>Calcular horário</Title>
 
-     <input 
-      placeholder='Horário de chegada'
+     <Label htmlFor='horario-chegada'>Horário de chegada</Label>
+     <Input 
+      id='horario-chegada'
+      placeholder='Digite o horário de chegada'
       value={arrival}
       onChange={event => setArrival(event.target.value)}
      />
 
-     <input 
-      placeholder='Horário de saída'
+     <Label htmlFor='horario-saida'>Horário de saída</Label>
+     <Input 
+      id='horario-saida'
+      placeholder='Digite o horário de saída'
       value={departure}
       onChange={event => setDeparture(event.target.value)}
      />
 
-     <input 
+     <Label htmlFor='horario-almoco'>Horário de almoço (minutos)</Label>
+     <Input 
+      id='horario-almoco'
       placeholder='Minutos de almoço'
       value={lunch}
       onChange={event => setLunch(Number(event.target.value))}
      />
 
-     <input 
+     <Label htmlFor='hora-extra'>Horas extra</Label>
+     <Input 
+      id='hora-extra'
       placeholder='Horas Extra'
       value={extraHours}
       onChange={event => setExtraHours(Number(event.target.value))}
      />
 
-     <input 
+     <Label htmlFor='minuto-extra'>Minutos extra</Label>
+     <Input
+      id='minuto-extra'
       placeholder='Minutos Extra'
       value={extraMinutes}
       onChange={event => setExtraMinutes(Number(event.target.value))}
