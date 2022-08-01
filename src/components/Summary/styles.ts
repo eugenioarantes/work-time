@@ -13,7 +13,7 @@ export const Container = styled.div`
 `;
 
 export const Card = styled.div<TotalProps>`
-    background: #0d0d0e9e;
+    background: #0000007d;
     padding: 1.5rem 2rem;
     border-radius: 0.25rem;
     color: #FFF;
@@ -58,6 +58,6 @@ export const Clock = styled(ClockImage)`
   bottom: 0;
   right: 0px;
 
-  opacity: 3%;
+  opacity: 7%;
   /* transform: rotate(335deg); */
 `;

@@ -7,7 +7,7 @@ export const Container = styled.form`
     width: 100%;
     padding: 0 1.5rem;
     height: 4rem;
-    background: #3c619c80;
+    background: #000;
     color: #FFF;
     border-radius: 0.25rem;
     border: 0;
@@ -15,10 +15,10 @@ export const Container = styled.form`
     margin-top: 1.5rem;
     font-weight: 600;
 
-    transition: filter 0.2s;
+    transition: background-color 0.5s;
 
     &:hover {
-      filter: brightness(0.8);
+      background: #080808;
     }
   }
 `;
@@ -26,13 +26,14 @@ export const Container = styled.form`
 export const Title = styled.h2`
   display: flex;
   justify-content: center;
-  color: #000;
+  color: #fff;
   font-size: 1.5rem;
   margin-bottom: 2rem;
+  filter: drop-shadow(2px 4px 6px black);
 `;
 
 export const Label = styled.label`
-  color: #000;
+  color: #ffffffc4;
 `;
 
 export const Input = styled(IMaskInput)`
@@ -42,16 +43,16 @@ export const Input = styled(IMaskInput)`
   width: 100%;
   padding: 0.5rem;
   height: 4rem;
-  border-radius: 0.25rem;
+  border-radius: 10px;
 
-  border: 1px solid #d7d7d7;
-  background: #e7e9ee;
+  border: 0;
+  background: #ffffff08;
 
   font-weight: 400;
   font-size: 1rem;
 
   &::placeholder {
-    color: var(--text-body);
+    color: #ffffff3b;
   }
 
   & + input {
