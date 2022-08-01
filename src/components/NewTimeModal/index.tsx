@@ -15,9 +15,9 @@ export function NewTimeModal({isOpen, onRequestClose}: NewTimeModalProps) {
 
   const [arrival, setArrival] = useState('');
   const [departure, setDeparture] = useState('');
-  const [lunch, setLunch] = useState(0);
-  const [extraHours, setExtraHours] = useState(0);
-  const [extraMinutes, setExtraMinutes] = useState(0);
+  const [lunch, setLunch] = useState('');
+  const [extraHours, setExtraHours] = useState('');
+  const [extraMinutes, setExtraMinutes] = useState('');
 
 
   async function handleCreateNewTime(event: FormEvent) {
@@ -33,9 +33,9 @@ export function NewTimeModal({isOpen, onRequestClose}: NewTimeModalProps) {
 
     setArrival('');
     setDeparture('');
-    setLunch(0);
-    setExtraHours(0);
-    setExtraMinutes(0);
+    setLunch('');
+    setExtraHours('');
+    setExtraMinutes('');
 
     onRequestClose();
   }
@@ -60,43 +60,48 @@ export function NewTimeModal({isOpen, onRequestClose}: NewTimeModalProps) {
      <Title>Calcular horário</Title>
 
      <Label htmlFor='horario-chegada'>Horário de chegada</Label>
-     <Input 
+     <Input
+      mask="00:00"
       id='horario-chegada'
       placeholder='Digite o horário de chegada'
       value={arrival}
-      onChange={event => setArrival(event.target.value)}
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) => setArrival(event.target.value)}
      />
 
      <Label htmlFor='horario-saida'>Horário de saída</Label>
      <Input 
+      mask="00:00"
       id='horario-saida'
       placeholder='Digite o horário de saída'
       value={departure}
-      onChange={event => setDeparture(event.target.value)}
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) => setDeparture(event.target.value)}
      />
 
      <Label htmlFor='horario-almoco'>Horário de almoço (minutos)</Label>
      <Input 
+      mask="00"
       id='horario-almoco'
-      placeholder='Minutos de almoço'
+      placeholder='Digite os minutos de almoço'
       value={lunch}
-      onChange={event => setLunch(Number(event.target.value))}
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) => setLunch((event.target.value))}
      />
 
      <Label htmlFor='hora-extra'>Horas extra</Label>
      <Input 
+      mask="00"
       id='hora-extra'
-      placeholder='Horas Extra'
+      placeholder='Digite as horas extra'
       value={extraHours}
-      onChange={event => setExtraHours(Number(event.target.value))}
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) => setExtraHours((event.target.value))}
      />
 
      <Label htmlFor='minuto-extra'>Minutos extra</Label>
      <Input
+      mask="00"
       id='minuto-extra'
-      placeholder='Minutos Extra'
+      placeholder='Digite os minutos extra'
       value={extraMinutes}
-      onChange={event => setExtraMinutes(Number(event.target.value))}
+      onChange={(event: React.ChangeEvent<HTMLInputElement>) => setExtraMinutes((event.target.value))}
      />
 {/* 
     <TimeTypeContainer>

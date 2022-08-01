@@ -5,9 +5,9 @@ interface Time {
   id: number;
   arrival: string,
   departure: string,
-  lunch: number,
-  extraHours: number,
-  extraMinutes: number,
+  lunch: string,
+  extraHours: string,
+  extraMinutes: string,
   createdAt: string;
 }
 
