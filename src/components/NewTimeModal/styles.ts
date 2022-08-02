@@ -47,6 +47,7 @@ export const Input = styled(IMaskInput)`
 
   border: 0;
   background: #ffffff08;
+  color: #ffffff;
 
   font-weight: 400;
   font-size: 1rem;
