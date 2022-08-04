@@ -24,9 +24,9 @@ export function Summary() {
   let finalMinutes = '00';
   let overtimeDone = '00';
 
-  const getHoursAndMinutes = ( chegada: string, saida: string  ): QuantityHoursAndMinutes => {
-    const [arrivalTime, arrivalMinute] = chegada.split(":");
-    const [departureTime, departureMinute] = saida.split(":");
+  const getHoursAndMinutes = ( arrival: string, departure: string  ): QuantityHoursAndMinutes => {
+    const [arrivalTime, arrivalMinute] = arrival.split(":");
+    const [departureTime, departureMinute] = departure.split(":");
 
    const timeDifferenceInMinutes = differenceInMinutes(
       new Date(2022, 8, 20, Number(departureTime), Number(departureMinute), 0),
