@@ -82,10 +82,11 @@ export function Summary() {
   const countExtraHours = (): void => {
     const finalHourConvertedNumber = Number(finalHour);
 
-    if (finalHourConvertedNumber >= 8) {
-      overtimeDone = `${(finalHourConvertedNumber - 8)}: ${finalMinutes}`; 
+    if (finalHourConvertedNumber < 8 || (finalHourConvertedNumber === 8 && Number(finalMinutes ) === 0) ) {
+      return;
     }
 
+    overtimeDone = `${(finalHourConvertedNumber - 8)}: ${finalMinutes}`; 
     verifyHoursFormat('overtimeDone');
   };
 
