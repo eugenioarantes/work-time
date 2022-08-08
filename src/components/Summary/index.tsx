@@ -95,8 +95,8 @@ export function Summary() {
         finalHour = `0${finalHour}`;
       }
   
-      if (Number(finalMinutes) === 0) {
-        finalMinutes = `00`;
+      if (Number(finalMinutes) < 10) {
+        finalMinutes = `0${finalMinutes}`;
       }
       return;
     }
