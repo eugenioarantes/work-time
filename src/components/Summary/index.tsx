@@ -108,8 +108,8 @@ export function Summary() {
       extraHours = `0${extraHours}`;
     }
 
-    if (Number(extraMinutes) === 0) {
-      extraMinutes = `00`;
+    if (Number(extraMinutes) < 10) {
+      extraMinutes = `0${extraMinutes.trim()}`;
     }
 
     overtimeDone = `${extraHours}: ${extraMinutes}`;
