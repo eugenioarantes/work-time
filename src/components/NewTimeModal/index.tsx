@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import Modal from 'react-modal';
 
 import { Container, Input, Label, Title } from './styles';
@@ -46,7 +46,7 @@ export function NewTimeModal({isOpen, onRequestClose}: NewTimeModalProps) {
     onRequestClose={onRequestClose}
     overlayClassName="react-modal-overlay"
     className="react-modal-content"
-  >
+    >
 
     <button
       type="button"

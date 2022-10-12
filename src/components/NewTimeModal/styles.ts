@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { convertPixelToRem } from "css-blocks-styled-components";
 import { IMaskInput } from 'react-imask';
+import { QUERIES } from "../../utils/appConstants";
 
 export const Container = styled.form`
   button[type="submit"] {
@@ -20,6 +21,15 @@ export const Container = styled.form`
     &:hover {
       background: #080808;
     }
+
+    ${QUERIES.LAPTOPS} {
+      height: ${convertPixelToRem(40)};
+      font-size: ${convertPixelToRem(15)};
+    }
+  }
+
+  ${QUERIES.LAPTOPS} {
+    height: ${convertPixelToRem(470)};
   }
 `;
 
@@ -30,6 +40,11 @@ export const Title = styled.h2`
   font-size: 1.5rem;
   margin-bottom: 2rem;
   filter: drop-shadow(2px 4px 6px black);
+
+  ${QUERIES.LAPTOPS} {
+    font-size: ${convertPixelToRem(20)};
+    margin-bottom: 1rem;
+  }
 `;
 
 export const Label = styled.label`
@@ -58,5 +73,9 @@ export const Input = styled(IMaskInput)`
 
   & + input {
     margin-top: 1rem;
+  }
+
+  ${QUERIES.LAPTOPS} {
+    height: ${convertPixelToRem(40)};
   }
 `;
