@@ -7,8 +7,9 @@ interface HeaderProps {
 export function Header({ onOpenNewTimeModal }: HeaderProps) {
   return (
     <Container>
+      <h1>Work time</h1>
       <Content>
-        <div/>
+        <div />
 
         <button type="button" onClick={onOpenNewTimeModal}>
           Calcular

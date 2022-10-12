@@ -1,3 +1,4 @@
+import { convertPixelToRem } from "css-blocks-styled-components";
 import styled, { css } from "styled-components";
 import { ReactComponent as ClockImage } from '../../assets/clock.svg';
 
@@ -6,10 +7,10 @@ interface TotalProps {
 }
 
 export const Container = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  display: flex;
   margin-top: -10rem;
+  justify-content: center;
+  gap: ${convertPixelToRem(100)};
 `;
 
 export const Card = styled.div<TotalProps>`

@@ -2,6 +2,18 @@ import styled from "styled-components";
 
 export const Container = styled.header`
   background: #161616;
+
+  h1 {
+    position: absolute;
+    left: 80px;
+    top: 35px;
+    color: #cdcdcd;
+    transition: color 0.5s;
+
+    :hover {
+      color: #fff;
+    }
+  }
 `;
 
 export const Content = styled.div`

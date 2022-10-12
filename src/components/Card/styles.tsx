@@ -9,6 +9,7 @@ export const Container = styled.div<TotalProps>`
     padding: 1.5rem 2rem;
     border-radius: 0.25rem;
     color: #FFF;
+    width: 360px;
 
     header {
       display: flex;
