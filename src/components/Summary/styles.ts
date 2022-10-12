@@ -1,6 +1,7 @@
 import { convertPixelToRem } from "css-blocks-styled-components";
 import styled, { css } from "styled-components";
 import { ReactComponent as ClockImage } from '../../assets/clock.svg';
+import { QUERIES } from "../../utils/appConstants";
 
 interface TotalProps {
   total?: number;
@@ -11,6 +12,10 @@ export const Container = styled.div`
   margin-top: -10rem;
   justify-content: center;
   gap: ${convertPixelToRem(100)};
+
+  ${QUERIES.LAPTOPS} {
+    margin-top: -8rem;
+  }
 `;
 
 export const Card = styled.div<TotalProps>`
@@ -60,5 +65,9 @@ export const Clock = styled(ClockImage)`
   right: 0px;
 
   opacity: 7%;
-  /* transform: rotate(335deg); */
+
+  ${QUERIES.LAPTOPS} {
+    width: 430px;
+    height: 430px;
+  }
 `;

@@ -1,4 +1,6 @@
+import { convertPixelToRem } from "css-blocks-styled-components";
 import styled from "styled-components";
+import { QUERIES } from "../../utils/appConstants";
 
 export const Container = styled.header`
   background: #161616;
@@ -13,6 +15,10 @@ export const Container = styled.header`
     :hover {
       color: #fff;
     }
+  }
+
+  ${QUERIES.LAPTOPS} {
+    height: ${convertPixelToRem(200)};
   }
 `;
 
