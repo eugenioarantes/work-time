@@ -64,7 +64,7 @@ export const Clock = styled(ClockImage)`
   bottom: 0;
   right: 0px;
 
-  opacity: 7%;
+  opacity: 10%;
 
   ${QUERIES.LAPTOPS} {
     width: 430px;
