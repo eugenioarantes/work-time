@@ -46,7 +46,7 @@ export const Card = styled.div<TotalProps>`
       `}
 
       ${props => (props.total !== undefined && props.total < 0) && css`
-      background: #c53030;
+      background: #c73030;
       `}
 
       ${props => (props.total !== undefined && props.total === 0) && css`
