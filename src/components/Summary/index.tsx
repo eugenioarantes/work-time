@@ -24,11 +24,11 @@ export function Summary() {
   let finalMinutes = '00';
   let overtimeDone = '00';
 
-  const getHoursAndMinutes = ( arrival: string, departure: string  ): QuantityHoursAndMinutes => {
+  const getHoursAndMinutes = (arrival: string, departure: string): QuantityHoursAndMinutes => {
     const [arrivalTime, arrivalMinute] = arrival.split(":");
     const [departureTime, departureMinute] = departure.split(":");
 
-   const timeDifferenceInMinutes = differenceInMinutes(
+    const timeDifferenceInMinutes = differenceInMinutes(
       new Date(2022, 8, 20, Number(departureTime), Number(departureMinute), 0),
       new Date(2022, 8, 20, Number(arrivalTime), Number(arrivalMinute), 0),
     );
@@ -43,7 +43,7 @@ export function Summary() {
     }
   };
 
-  const subtractLunchTime = ( lunchTime: number ,quantityHours: number, quantityMinutes: number ): SubtractLunchTime => {
+  const subtractLunchTime = (lunchTime: number, quantityHours: number, quantityMinutes: number): SubtractLunchTime => {
     let subtractedLunchTime = new Date();
 
     if (lunchTime === SIXTY_MINUTES) {
@@ -63,14 +63,14 @@ export function Summary() {
     }
   };
 
-  const addExtraHour = ( hoursSubtractedLunchTime: number, minutesSubtractedLunchTime: number ): void => {
-    let extraHours = 0;  
+  const addExtraHour = (hoursSubtractedLunchTime: number, minutesSubtractedLunchTime: number): void => {
+    let extraHours = 0;
 
     extraHours = addHours(new Date(2022, 8, 20, Number(hoursSubtractedLunchTime), Number(minutesSubtractedLunchTime)), Number(time?.extraHours)).getHours();
-  
+
     const extraMinutes = addMinutes(new Date(2022, 8, 20, Number(extraHours), Number(minutesSubtractedLunchTime)), Number(time?.extraMinutes)).getMinutes();
 
-    if ( extraMinutes < minutesSubtractedLunchTime) {
+    if (extraMinutes < minutesSubtractedLunchTime) {
       extraHours = addHours(new Date(2022, 8, 20, Number(extraHours), Number(extraMinutes)), 1).getHours();
     }
 
@@ -82,11 +82,11 @@ export function Summary() {
   const countExtraHours = (): void => {
     const finalHourConvertedNumber = Number(finalHour);
 
-    if (finalHourConvertedNumber < 8 || (finalHourConvertedNumber === 8 && Number(finalMinutes ) === 0) ) {
+    if (finalHourConvertedNumber < 8 || (finalHourConvertedNumber === 8 && Number(finalMinutes) === 0)) {
       return;
     }
 
-    overtimeDone = `${(finalHourConvertedNumber - 8)}: ${finalMinutes}`; 
+    overtimeDone = `${(finalHourConvertedNumber - 8)}: ${finalMinutes}`;
     verifyHoursFormat('overtimeDone');
   };
 
@@ -95,7 +95,7 @@ export function Summary() {
       if (Number(finalHour) < 10) {
         finalHour = `0${finalHour}`;
       }
-  
+
       if (Number(finalMinutes) < 10) {
         finalMinutes = `0${finalMinutes}`;
       }
@@ -118,9 +118,9 @@ export function Summary() {
 
 
   if (time?.arrival && time.departure && time.lunch) {
-    const {quantityHours, quantityMinutes} = getHoursAndMinutes(time.arrival, time.departure);
+    const { quantityHours, quantityMinutes } = getHoursAndMinutes(time.arrival, time.departure);
 
-    const {hoursSubtractedLunchTime, minutesSubtractedLunchTime} = subtractLunchTime( Number(time.lunch) ,quantityHours, quantityMinutes );
+    const { hoursSubtractedLunchTime, minutesSubtractedLunchTime } = subtractLunchTime(Number(time.lunch), quantityHours, quantityMinutes);
 
     addExtraHour(hoursSubtractedLunchTime, minutesSubtractedLunchTime);
 
@@ -132,18 +132,19 @@ export function Summary() {
 
   return (
     <>
-    <Clock/>
-    <Container>
-      <Card 
-        phrase={"Worked hours: "}
-        finalHour={finalHour}
-        finalMinutes={finalMinutes}
-      /> 
-      <Card
-        phrase={"Extra hours: "}
-        overtimeDone={overtimeDone}
-      />
-    </Container>
+      <Clock />
+      <Container>
+        <Card
+          phrase={"Worked hours: "}
+          finalHour={finalHour}
+          finalMinutes={finalMinutes}
+        />
+
+        <Card
+          phrase={"Extra hours: "}
+          overtimeDone={overtimeDone}
+        />
+      </Container>
     </>
   );
 }
