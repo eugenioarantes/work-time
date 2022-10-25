@@ -11,6 +11,7 @@ export const Container = styled.header`
     top: 35px;
     color: #cdcdcd;
     transition: color 0.5s;
+    cursor: default;
 
     :hover {
       color: #fff;
