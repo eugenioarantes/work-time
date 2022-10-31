@@ -22,7 +22,7 @@ export function Summary() {
 
   let finalHour = '00';
   let finalMinutes = '00';
-  let overtimeDone = '00';
+  let overtimeDone = '00:00';
 
   const getHoursAndMinutes = (arrival: string, departure: string): QuantityHoursAndMinutes => {
     const [arrivalTime, arrivalMinute] = arrival.split(":");
