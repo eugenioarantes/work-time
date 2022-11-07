@@ -78,4 +78,9 @@ export const Input = styled(IMaskInput)`
   ${QUERIES.LAPTOPS} {
     height: ${convertPixelToRem(40)};
   }
+
+  :-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #1c1c1c inset !important;
+    -webkit-text-fill-color: white !important;
+  }
 `;
