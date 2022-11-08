@@ -1,4 +1,6 @@
-# Work time Project
+<h1 align="center">
+  Work time Project
+</h1>
 
 <img
   align="center" 
